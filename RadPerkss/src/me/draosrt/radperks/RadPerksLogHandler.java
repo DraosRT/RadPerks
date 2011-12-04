@@ -1,4 +1,4 @@
-package me.rohan.RadPerks;
+package me.draosrt.radperks;
 
 import java.util.logging.Logger;
 
