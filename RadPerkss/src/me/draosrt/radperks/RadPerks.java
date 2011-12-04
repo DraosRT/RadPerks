@@ -1,7 +1,6 @@
-package me.rohan.RadPerks;
+package me.draosrt.radperks;
 
 import org.bukkit.event.Event;
-import org.bukkit.event.Event.Priority;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -14,7 +13,7 @@ public class RadPerks extends JavaPlugin {
 	public void onEnable() {
 		this.log = new RadPerksLogHandler (this);
 		PluginManager pm = this.getServer().getPluginManager();
-		pm.registerEvent(Event.Type.PLAYER_INTERACT, this.playerListener, Priority.Normal, this);
+		pm.registerEvent(Event.Type.PLAYER_INTERACT, this.playerListener, Event.Priority.Normal, this);
 		
 		this.log.info("Enabled");
 		
