@@ -14,7 +14,7 @@ public class RadPerksPlayerListener extends PlayerListener {
 	public RadPerksPlayerListener(RadPerks instance) {
 		plugin = instance;
 	}
-	
+
 	public void onPlayerInteract(PlayerInteractEvent event) {
 		Player player = event.getPlayer();
 		Material material = event.getItem().getType();
@@ -24,7 +24,7 @@ public class RadPerksPlayerListener extends PlayerListener {
             
 		}
 	} // end of onPlayerInteract
-	
+
 	private void onPlayerEat(Player player, PlayerInteractEvent event) {
 		int id = event.getItem().getTypeId();
 		if(!myHashMap.containsKey(player.getName()){ // player not logged?  
@@ -48,21 +48,21 @@ public class RadPerksPlayerListener extends PlayerListener {
 			for(i = 0; i < players.size(); i++) { /*
 			while i is smaller than the list of players, plus it and run the code*/
 				Player p = (Player) players.get(i); // get a player out of the list.
-			
+
 				write.print(p.getName() + ":" + myHashMap.get(p.getName())); // write to file
-				
+
 			}
 			if(i >= players.size()) {
 				write.close(); // save what we have written.
 			}
 		}
-			
-		
+
+
 	}
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
 }
