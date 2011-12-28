@@ -13,14 +13,16 @@ public class RadPerksPlayerListener extends PlayerListener {
 	public RadPerksPlayerListener(RadPerks instance) {
 		plugin = instance;
 	}
-
+	
+	
+	
 	@Override
 	public void onPlayerInteract(PlayerInteractEvent event) {
-		if(event.isCancelled() || event.isBlockInHand()){ // randomer679 - Check if the event is cancelled OR if it was a block place event. If so return.
+		if(event.isCancelled()){
 			return;
 		}
 		Player player = event.getPlayer();
-		Material material = event.getItem().getType();
+		Material material = event.getMaterial();
 		if ((material == Material.RAW_BEEF) || (material == Material.RAW_FISH)
 				|| (material == Material.RAW_CHICKEN || (material == Material.PORK))) {
             onPlayerEat(player, event.getItem().getType());
@@ -38,13 +40,17 @@ public class RadPerksPlayerListener extends PlayerListener {
 		}
 		int radValue = RadPerks.playerRadValues.get(player); // get that players rad value
 		radValue += radAddition; // randomer679 - Add radAddition to current value.
-		RadPerks.playerRadValues.put(player, radValue);
-		player.sendMessage("You just gained "+radAddition+" rads. You now have "+radValue+" rads.");
+		player.sendMessage("You just gained "+radAddition+" rads.");
 		if(radValue >= 50){
 			int radLevel = RadPerks.playerRadLevels.get(player);
 			radLevel++;
 			RadPerks.playerRadLevels.put(player, radLevel);
-			player.sendMessage("Also you just gained a RadLevel! Your current RadLevel is "+radLevel+"!");
+			player.sendMessage("Congrats, you just gained a RadLevel! Your current RadLevel is "+radLevel+"!");
+			radValue = radValue-50;
+			RadPerks.playerRadValues.put(player, radValue);
+			player.sendMessage("You now have "+radValue+" rads.");
+		}else{
+			player.sendMessage("You now have "+radValue+" rads.");
 		}
 		RadPerksUtils.save(); // save to file. randomer679 - I recommend moving this to onDisable but I'll leave that up to you :)
 	} // randomer679 - Closing brace was missing.
